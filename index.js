@@ -20,4 +20,14 @@ app.listen(5000, () => {
     console.log('Express server started at port : 5000');
 });
 
+const MongoClient = require('mongodb').MongoClient;
+const uri = "mongodb+srv://renald_leif:gwapo0410@cluster0.cgr0n.mongodb.net/test?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  client.close();
+});
+
+
 app.use('/student', studentController);
